@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>asdasdasdasd</title>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script type="text/javascript">
+		let data = {
+  			"Fish": {
+    			"trout": {},
+    			"salmon": {}
+  			},
+
+  			"Tree": {
+    			"Huge": {
+    			  "sequoia": {},
+    			  "oak": {}
+   				 },
+  			   "Flowering": {
+ 			    	"redbud": {},
+      				"magnolia": {}
+				}
+			}
+		};
+
+		function createList(listType){
+			return document.createElement(listType);
+		}
+
+		function listElement(text){
+			let listElement = document.createElement("li");
+			listElement.innerHTML = text;
+			return listElement;
+		}
+
+		function createListFromObject(lista,object){
+			for (let [key, value] of Object.entries(object)) {
+   				lista.append(listElement(key));
+   				if(typeof(value) === "object" && Object.keys(value).length){
+   					let nuevaLista = createList("ul");
+   					lista.append(nuevaLista);
+   					createListFromObject(nuevaLista,value);
+   				}
+			}
+		}
+		let listaRoot = document.getElementById("container");
+		listaRoot.append(createList("ul"));
+		createListFromObject(listaRoot,data);
+	</script>
+</body>
+</html>

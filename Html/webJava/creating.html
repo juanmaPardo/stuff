@@ -1,0 +1,95 @@
+<!--
+node.append(...nodes or strings) – append nodes or strings at the end of node,
+node.prepend(...nodes or strings) – insert nodes or strings into the beginning of node,
+node.before(...nodes or strings) –- insert nodes or strings before the node,
+node.after(...nodes or strings) –- insert nodes or strings after the node,
+node.replaceWith(...nodes or strings) –- replaces node with the given nodes or strings.
+
+<div id="div"></div>
+<script>
+  div.before('<p>Hello</p>', document.createElement('hr'));
+</script>
+
+Resultaria en:
+&lt;p&gt;Hello&lt;/p&gt;
+<hr>
+<div id="div"></div>
+
+
+Otros metodos:
+There’s another, pretty versatile method: elem.insertAdjacentHTML(where, html).
+
+The first parameter is a string, specifying where to insert. Must be one of the following:
+
+"beforebegin" – insert html before elem,
+"afterbegin" – insert html into elem, at the beginning,
+"beforeend" – insert html into elem, at the end,
+"afterend" – insert html after elem.
+
+<div id="div"></div>
+<script>
+  div.insertAdjacentHTML('beforebegin', '<p>Hello</p>');
+  div.insertAdjacentHTML('afterend', '<p>Bye</p>');
+</script>
+
+Resultaria en:
+<p>Hello</p>
+<div id="div"></div>
+<p>Bye</p>
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>asdasdas</title>
+</head>
+<body>
+	<ol id="list">
+  		<li>0</li>
+  		<li>1</li>
+  		<li>2</li>
+	</ol>
+
+	<div class="alert" id="div">
+  		<strong>Hi there!</strong> You've read an important message.
+	</div>
+
+	  <script type="text/javascript">
+		//To create DOM nodes there's two methods:
+		let div = document.createElement('div');
+		div.className = "alert alert-success";
+		div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+		//let textNode = document.createTextNode('Here I am');
+
+		//Para hacerlo que aparesca en el codigo nececitamos recordar el concepto de padres-hijos, entonces:
+		document.body.appendChild(div);
+
+		let newLi = document.createElement('li');
+        let newLi1 = document.createElement('li');
+        let newLi2 = document.createElement('li');
+		newLi.innerHTML = "At the End";
+        newLi1.innerHTML = "Second";
+        newLi2.innerHTML = "First child";
+		list.appendChild(newLi);
+        list.insertBefore(newLi1,list.children[1]);
+        list.insertBefore(newLi2,list.firstChild);
+
+        ol.before('before');
+  		ol.after('after');
+
+  		let prepend = document.createElement('li');
+  		prepend.innerHTML = 'prepend';
+  		ol.prepend(prepend);
+
+  		let append = document.createElement('li');
+  		append.innerHTML = 'append';
+  		ol.append(append);
+
+  		//Si lo seteas en false lo copia pero sin ninguno de los children
+  		let div2 = div.cloneNode(true);
+  		div2.querySelector('strong').innerHTML = "Bye There";
+  		div.after(div2);
+	</script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/all.css">
+    <script src="js/all.js"></script>
+
+    <title>Practica Bootstrap</title>
+  </head>
+  <body>
+	<!--Como hago para no mostrar algo en una determina medida? , Bueno, podemos hacer lo siguiente:-->
+	<div class="container-fluid padding">
+		<div class="row padding">
+			<div class="col-sm-6 col-md-4">
+				<div class="card">			
+					<img src="img/desk.png" class="card-image-top">
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4">
+				<div class="card">			
+					<img src="img/desk.png" class="card-image-top">
+				</div>
+			</div>
+			<div class="col-md-4 d-xs-none d-md-block">
+				<div class="card">			
+					<img src="img/desk.png" class="card-image-top">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--Que pasa si tenemos una row con dos elementos que cada uno ocupa 4 columnas pero no queremos agregar un tercero que ocupe esas 4, pero lo que si nos gustaria es que esos dos
+		de 4 queden centrados en el centro, bueno, para eso hacemos:
+		justify-content-start: se va a la izq
+		justify-content-right: se va a la derecha
+		justify-content-between: mantiene la misma distancia entre los elementos, por ejemplo
+		si tenemos 3 que ocupan 3 columnas nada mas, aunque seria raro, pero ponele
+		justify-content-around: Lo mismo que between pero lo hace a la izq y a la derecha-->
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-4 text-center">
+				<h1>Primero</h1>
+			</div>
+			<div class="col-4 text-center">
+				<h1>Segundo</h1>
+			</div>
+		</div>
+	</div>
+	
+	<!--Que pasa si queremos que algo se quede arriba o abajo sin moverse?, bueno, creo que se puede usar sticky top pero tambien se puede usar fixed-top y fix-bottom -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 fixed-top text-center">
+				<!-- Mark le da un sombreado-->
+				<p class="mark font-weight-light">Se queda arriba y no se mueve por mas que scrolee para abajo</p>
+			</div>
+		</div>
+		<div>
+			<p class="text-muted">MUTED
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-primary">PRIMARY
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-secondary">SECONDARY
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-dark">DARK
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-light">LIGHT
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-danger">DANGER
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-info">INFO
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-succes">SUCCES
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-warning">WARNING
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-white"> EL WHITE
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<!--Lo saco ahora xk me molesta, pero la idea es esa
+		<div class="col-12 fixed-bottom text-center">
+			<p class="mark font-weight-bold">Se queda abajo y no se mueve por mas que scrolee para arriba</p>
+		</div>
+		-->
+	</div>
+
+
+
+
+	<!--Para poder trabajar con tablas:-->
+	<div class="container-fluid">
+		<div class="col">
+			<!--table-striped le da esas lineas sombreadas, borderer las lineas de contorno de las celdas, y hover le da ese coso sombreado que aparece cuando pasamos el cursor por encima de la misma
+			
+			De por si la tabla es responsiva para todos lados, pero podemos especificar que para cierto tamaño no queremos que sea responsivo porque no se veria en toda la pantalla, para eso podemos especificar en cual no queremos que sea responsive, de ahi para atras no va a ser responsivo:
+			-->
+			<table class="table table-striped table-bordered table-hover table-responsive-sm">
+				<tr>
+					<td>Lunes</td>
+					<td>Martes</td>
+					<td>Miercoles</td>
+					<td>Jueves</td>
+					<td>Viernes</td>
+					<td>Sabado</td>
+					<td>Domingo</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>20</td>
+					<td>15</td>
+					<td>16</td>
+					<td>21</td>
+					<td>12</td>
+					<td>45</td>
+				</tr>
+				<tr>
+					<td>D</td>
+					<td>V</td>
+					<td>A</td>
+					<td>P</td>
+					<td>Q</td>
+					<td>S</td>
+					<td>O</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+
+	<!--Para trabajar con imagenes -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-6">
+				<img src="img/team1.png" class="image-fluid img-thumbnail rounded">
+			</div>
+			<div class="col-6">
+				<img src="img/team2.png" class="image-fluid img-thumbnail rounded">
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="col">
+			<p class="alert alert-dissmisable">
+				<!--times es una cruz-->
+				<button type="button" class="close float-right" data-dismiss="alert">&times;</button>
+				Aca iria el texto que va a desaparecer unas vez apretada la cruz
+			</p>
+		</div>
+		
+	</div>
+
+
+
+	<!--Si queremos hacer un grupo de botones -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 text-center">
+				<div class="btn-group btn-group-lg">
+					<button type="button" class="btn btn-primary">Primero</button>
+					<button type="button" class="btn btn-primary">Segundo</button>
+					<div class="btn-group btn-group-lg">
+						<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropwdown">Tercero</button>
+						<div class="dropdown-menu">
+							<a href="#" class="dropdown-item">SubTercUno</a>
+							<a href="#" class="dropdown-item">SubTercDos</a>
+							<a href="#" class="dropdown-item">SubTercTres</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-8 progress">
+				<div class="progress-bar w-50">50%</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container-fluid">
+		<ul class="pagination">
+		<li class="page-item"><a href="#" class="page-link">< Previo</a></li>
+		<li class="page-item"><a href="#" class="page-link">1</a></li>
+		<li class="page-item"><a href="#" class="page-link">2</a></li>
+		<li class="page-item"><a href="#" class="page-link">3</a></li>
+		<li class="page-item"><a href="#" class="page-link">Siguiente ></a></li>
+		</ul>
+	</div>
+
+<div class="container-fluid">
+	<div class="dropwdown">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">	Desplegable</button>
+		<div class="dropdown-menu">
+			<div class="dropdown-header">Grupo Uno</div>
+			<a href="#" class="dropdown-item">Link Uno</a>
+			<a href="#" class="dropdown-item">Link Dos</a>
+			<a href="#" class="dropdown-item">Link Tres</a>
+			<div class="dropdown-divider"></div>
+			<div class="dropdown-header">Grupo Dos</div>
+			<a href="#" class="dropdown-item">Link Tres</a>
+			<a href="#" class="dropdown-item">Link Cuatro</a>
+			<a href="#" class="dropdown-item">Link Cinco</a>
+		</div>
+	</div>
+
+</div>
+
+	<!--Formulario vertical 
+		Cada form-group contiene su respectivo label-input, a exception del submit
+		y la checkbox-->
+	<div class="container-fluid">
+		<br>
+		<h2>Formulario Vertical</h2>
+		<form action=".">
+			<div class="form-group">
+    			<label for="email">Email address:</label>
+    			<input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
+  			</div>
+  			<div class="form-group">
+    			<label for="pwd">Password:</label>
+    			<input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="pwd">
+  			</div>
+  			<div class="form-group">
+  				<label for="comment">Comment</label>
+  				<textarea rows=5 class="form-control" id="comment"></textarea>
+  			</div>
+			<label for="sexo">Select..:</label>
+			<div class="checkbox-inline">
+				<label><input type="checkbox" name="o1">Option1</label>
+  				<label><input type="checkbox" name="o2">Option2</label>
+  				<label><input type="checkbox" name="o3">Option3</label>
+			</div>
+			<div class="form-group">
+				<label for="sex">Select Sex</label>
+				<div class="radio">
+					<label><input type="radio" name="masculine">Masculine</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="femenine">Femenine</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="other">Other</label>
+				</div>
+			</div>
+			<label for="sexInline">Select Sex</label>
+				<div class="radio-inline">
+					<label><input type="radio" name="masculine" checked>Masculine</label>
+					<label><input type="radio" name="femenine">Femenine</label>
+					<label><input type="radio" name="other">Other</label>
+				</div>
+			<div class="form-group">
+				<label for="gradoEnsenianza">Seleccione estudios obtenidos:</label>
+				<select class="form-control" id="gradoAlcanzado">
+					<option value="">Primaria</option>
+					<option value="">Secundaria</option>
+					<option value="">Terciario</option>
+					<option value="">Estudios Universitarios</option>
+				</select>
+			</div>
+			<div class="input-group">
+     	   		<input type="text" class="form-control" placeholder="Search" name="search">
+      			<div class="input-group-btn">
+        			<button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
+      			</div>
+			</div>
+  			<div class="checkbox">
+  			  <label><input type="checkbox" name="remember"> Remember me</label>
+  			</div>
+  			<button type="submit" class="btn btn-outline-primary">Submit</button>
+		</form>
+	</div>
+
+<div class="container-fluid">
+  <h2>Horizontal form</h2>
+  <form class="form-horizontal" action=".">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+<br><br>
+
+	<div class="container-fluid">
+		<div class="media">
+			<div class="media-left">
+				<img src="img/team1.png" class="media-object image-fluid" style="width:60px">
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">Carlos,Monarg</h4>
+				<p>Pueee, lo que tu dice, que no, que no que no que no, que yo no quiero pasta mama, que yo
+				   quiero hamburgesa, como lo' hombre mama</p>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="media">
+			<div class="media-body">
+      			<h4 class="media-heading">Carla,Peterson</h4>
+      			<p>Pues que si quiere hamburgesa te las preparas tu, coño.</p>
+    		</div>
+    	<div class="media-right">
+     		 <img src="img/team2.png" class="media-object" style="width:60px">
+    	</div>
+  		</div>
+	</div>
+
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#popup">Abrir mensaje</button>
+
+	<div id="popup" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-tittle float-start">Header</h4>
+					<button type="button" class="close float-right" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<p>El texto que debe aparecer en el mismo</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.3.1.slim.min.js" ></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
+  </body>
+</html>

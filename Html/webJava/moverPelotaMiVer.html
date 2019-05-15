@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    #ball {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br> The ball should never leave the field.
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+    class BallMovement{
+      constructor(field,ball){
+        this.field = this.getFieldProperties(field);
+        this.ball = this.getBallProperties(ball);
+      }
+      getFieldProperties(field){
+        let placement = field.getBoundingRect();
+        let bordeSuperior = Math.round(placement.top) - field.clientTop;
+        let bordeIzquierdo = Math.round(placement.left) + field.clientLeft;
+        let bordeInferior = Math.round(placement.bottom) + field.clientTop;//los asumo iguales
+        let bordeDerecho = Math.round(placement.right) - field.clientLeft;//los asumo iguales}
+        return {upperLimit : bordeSuperior,leftLimit : bordeIzquierdo,
+                rightLimit : bordeDerecho, lowerLimit : bordeInferior};
+      }
+      getBallProperties(ball){
+        return {width : ball.clientWidth , height : ball.clientHeight};
+      }
+      handleEvent(event){
+        let xCenter = event.clientX - (this.ball.width/2);
+        let yCenter = event.clientY + (this.ball.height/2);
+        if(this.ballFits(event.clientX,event.clientY)){
+          this.moveBallTo(xCenter,yCenter);
+        }
+      }
+      ballFits(xCenter, yCenter){
+        let fitsRight = (xCenter + (this.ball.width/2)) <= this.field.rightLimit;
+        let fitsLeft = (xCenter - (this.ball.width/2)) >= this.field.leftLimit;
+        let fitsTop = (yCenter + (this.ball.width/2)) <= this.field.upperLimit;
+        let fitsBottom = (yCenter - (this.ball.width/2)) >= this.field.lowerLimit;
+        return fitsRight && fitsLeft && fitsTop && fitsBottom;
+      }
+      moveBallTo(xCenter,yCenter){
+        this.ball.style.left = Math.round(xCenter - this.field.leftLimit) + 'px';
+        this.ball.style.top = Math.round(this.field.upperLimit - yCenter) + 'px';
+      }
+    }
+    
+    let field = document.getElementById("field");
+    let ball = document.getElementById("ball");
+    let ballMovement = new BallMovement(field,ball);
+    fField.id.addEventListener("click",ballMovement);
+  </script>
+</body>
+</html>

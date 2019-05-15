@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+
+  <style type="text/css">
+    #text {
+      display: block;
+      height: 100px;
+      width: 456px;
+    }
+
+    #table th {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #table td {
+      width: 150px;
+      white-space: nowrap;
+      text-align: center;
+      vertical-align: bottom;
+      padding-top: 5px;
+      padding-bottom: 12px;
+    }
+
+    #table .nw {
+      background: #999;
+    }
+
+    #table .n {
+      background: #03f;
+      color: #fff;
+    }
+
+    #table .ne {
+      background: #ff6;
+    }
+
+    #table .w {
+      background: #ff0;
+    }
+
+    #table .c {
+      background: #60c;
+      color: #fff;
+    }
+
+    #table .e {
+      background: #09f;
+      color: #fff;
+    }
+
+    #table .sw {
+      background: #963;
+      color: #fff;
+    }
+
+    #table .s {
+      background: #f60;
+      color: #fff;
+    }
+
+    #table .se {
+      background: #0c3;
+      color: #fff;
+    }
+
+    #table .highlight {
+      background: red;
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+  <table id="table">
+    <tr>
+      <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
+    </tr>
+    <tr>
+      <td class="nw"><strong>Northwest</strong>
+        <br>Metal
+        <br>Silver
+        <br>Elders
+      </td>
+      <td class="n"><strong>North</strong>
+        <br>Water
+        <br>Blue
+        <br>Change
+      </td>
+      <td class="ne"><strong>Northeast</strong>
+        <br>Earth
+        <br>Yellow
+        <br>Direction
+      </td>
+    </tr>
+    <tr>
+      <td class="w"><strong>West</strong>
+        <br>Metal
+        <br>Gold
+        <br>Youth
+      </td>
+      <td class="c"><strong>Center</strong>
+        <br>All
+        <br>Purple
+        <br>Harmony
+      </td>
+      <td class="e"><strong>East</strong>
+        <br>Wood
+        <br>Blue
+        <br>Future
+      </td>
+    </tr>
+    <tr>
+      <td class="sw"><strong>Southwest</strong>
+        <br>Earth
+        <br>Brown
+        <br>Tranquility
+      </td>
+      <td class="s"><strong>South</strong>
+        <br>Fire
+        <br>Orange
+        <br>Fame
+      </td>
+      <td class="se"><strong>Southeast</strong>
+        <br>Wood
+        <br>Green
+        <br>Romance
+      </td>
+    </tr>
+
+  </table>
+
+  <script>
+    // <td> under the mouse right now (if any)
+    let currentElem = null;
+
+    table.onmouseover = function(event) {
+      if (currentElem) {
+        // before entering a new element, the mouse always leaves the previous one
+        // if we didn't leave <td> yet, then we're still inside it, so can ignore the event
+        return;
+      }
+
+      let target = event.target.closest('td');
+      if (!target || !table.contains(target)) return;
+
+      // yeah we're inside <td> now
+      currentElem = target;
+      target.style.background = 'pink';
+    };
+
+
+    table.onmouseout = function(event) {
+      // if we're outside of any <td> now, then ignore the event
+      if (!currentElem) return;
+
+      // we're leaving the element -- where to? Maybe to a child element?
+      let relatedTarget = event.relatedTarget;
+      if (relatedTarget) { // possible: relatedTarget = null
+        while (relatedTarget) {
+          // go up the parent chain and check -- if we're still inside currentElem
+          // then that's an internal transition -- ignore it
+          if (relatedTarget == currentElem) return;
+          relatedTarget = relatedTarget.parentNode;
+        }
+      }
+
+      // we left the element. really.
+      currentElem.style.background = '';
+      currentElem = null;
+    };
+  </script>
+
+</body>
+</html>

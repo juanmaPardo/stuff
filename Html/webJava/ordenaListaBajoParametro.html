@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number" data-action="orderByNumber">Age</th>
+        <th data-type="string" data-action="orderByName">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>John</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Pete</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Ann</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Eugene</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Ilya</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+  
+   class TableOrder{
+    constructor(table){
+      this.table = table;
+      table.onclick = this.onClick.bind(this);
+    }
+    
+    orderByNumber(){
+      //alert(this.table.rows[1].cells[1].innerHTML);
+       let sortedByNumber = Array.from(this.table.rows).slice(1)
+      .sort((rowA,rowB) => rowA.cells[0].innerHTML - rowB.cells[0].innerHTML);
+
+      //Como estan en un array que las agrege una a uno, pero como ya existen en la tabla
+      //lo que va a pasar es que las va a ir cambiando del ugar
+      this.table.tBodies[0].append(...sortedByNumber);
+    }
+    
+    orderByName(){
+      let sortedByNumber = Array.from(this.table.rows).slice(1)
+      .sort((rowA,rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
+
+      //Como estan en un array que las agrege una a uno, pero como ya existen en la tabla
+      //lo que va a pasar es que las va a ir cambiando del ugar
+      this.table.tBodies[0].append(...sortedByNumber);
+    }
+    
+    onClick(event){
+      let actionToEjecute = event.target.dataset.action;
+      if(actionToEjecute){
+        this[actionToEjecute]();
+      }
+    }
+   }
+   tabla = document.getElementById("grid");
+   new TableOrder(grid);
+  </script>
+
+</body>
+</html>

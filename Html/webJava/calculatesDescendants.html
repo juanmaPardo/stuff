@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>asdsdasdad</title>
+</head>
+<body>
+	<ul id="root">
+		<li class="">Animales
+			<ul>
+				<li class="">Vaca</li>
+				<li class="">Caballo</li>
+				<li class="">Cerdo</li>
+			</ul>
+		</li>
+		<li class="">Felicidad</li>
+		<li class="">Colores
+			<ul>
+				<li class="li">Primarios
+					<ul>
+						<li class="">Rojo</li>
+						<li class="">Amarillo</li>
+						<li class="">Azul</li>						
+					</ul>
+				</li>
+				<li class="li">Secundarios
+					<ul>
+						<li class="">Verde</li>
+						<li class="">Violeta</li>
+						<li class="">Naranja</li>	
+						<li class="">Celeste</li>					
+					</ul>
+				</li>				
+				<li class="li">Otros
+					<ul>
+						<li class="">Blanco</li>
+						<li class="">Negro</li>						
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+
+  <script>
+    let lis = document.getElementsByTagName('li');
+
+    for (let li of lis) {
+      // get the count of all <li> below this <li>
+      let descendantsCount = li.getElementsByTagName('li').length;
+      if (!descendantsCount) continue;
+
+      // add directly to the text node (append to the text)
+      li.firstChild.data += ' [' + descendantsCount + ']';
+    }
+  </script>
+</body>
+</html>

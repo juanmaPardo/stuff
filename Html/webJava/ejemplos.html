@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title> 
+  <script>
+    function changeTittle(){
+       let titulo = document.getElementById("titulo");
+       titulo.textContent = "Nuevo Titulo";
+    }
+    function showElements(){
+      let elementosLista = document.querySelectorAll("ul > li");
+      for(elem of elementosLista){
+        alert(elem.innerHTML);
+      }
+    }
+    function showHiddenText(){
+      let textoEscondido = document.getElementById("hiddenText");
+      textoEscondido.hidden = false;
+    }
+    
+    function doStuff(){
+      alert( elem.getAttribute('About') ); // (1) 'Elephant', reading
+
+      elem.setAttribute('Test', 123); // (2), writing
+
+      alert( elem.outerHTML ); // (3), see it's there
+
+      for (let attr of elem.attributes) { // (4) list all
+        alert( `${attr.name} = ${attr.value}` );
+      }
+    }
+
+    function setInputAttribute(){
+          //Si hubiese un input en el html x ejemplo
+      let input = document.querySelector('input');
+
+      // attribute => property
+      input.setAttribute('value', 'text');
+      alert(input.value); // text
+
+       // NOT property => attribute
+      input.value = 'newValue';
+      alert(input.getAttribute('value')); // text (not updated!),value is still equals 'text'
+    }
+
+    function setUserData(){
+      let user = {
+        name: "Juan",
+        age : 18
+      };
+      let placeToShow = document.querySelectorAll(["show-info"]);
+      for(let div of placeToShow){
+        let field = div.getAttribute("show-info");
+        div.innerHTML = user[field];
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1 id="titulo" onclick=changeTittle()>Este es un titulo</h1>
+  <p onclick="doStuff()"> El texto que tenemos abajo </p>
+  <div id="elem" about="Elephant"></div>
+  <ul onclick=showElements()>
+    <li>Primer elemento</li>
+    <li>Segundo elemento</li>
+  </ul>
+  <button onclick="showHiddenText()">Mostrar texto escondido</button>
+  <p hidden id="hiddenText">Texto escondido</p>
+  <!-- mark the div to show "name" here -->
+  <button onclick="setUserData()">Show user data</button>
+  <div show-info="name"></div>
+  <!-- and age here -->
+  <div show-info="age"></div>
+</body>

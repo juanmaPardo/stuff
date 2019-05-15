@@ -1,0 +1,74 @@
+@charset "utf-8";
+#tituloPrincipal{
+	/*Cuando pones margin y un valor sin especificar que lo que hace es tomar ese valor
+	a los 4 lados, arriba -abajo-centro-izquierda, lo mismo hace con padding*/
+	/*background-color: #1FEDDC;*/
+	text-align: center;
+	margin: 15px auto;
+	border: 3px solid #000000;
+	border-radius: 10px; /*Para redondear el borde*/
+	width: 350px;
+	box-shadow:#535353 5px 5px;/*Si agregas un valor mas es para difuminar la sombra*/
+	/*Degradados para cada uno de los 4 exploradores, no lo veo muy copado igual*/
+	background: -moz-linear-gradient(bottom,#07F8DE,,#049FC0);
+	background: -webkit-linear-gradient(bottom,#07F8DE,#049FC0);
+	/*background: -webkit-radial-gradient(center,ellipse,#9BDFFF,#70E5FA);*/
+	background: -ms-linear-gradient(bottom,#07F8DE,,#049FC0);
+	background: -o-linear-gradient(bottom,#07F8DE,,#049FC0);
+	/*Una linea o algo que rodee a nuestro contenedor*/
+	/*outline:3px dashed #E3E3E3;
+	outline-offset: 5px;*/
+	/*Tenes que especificar el navegador y cuanto lo queres rotar*/
+	/*-webkit-transform: rotate(3deg);*/
+}
+a:link{/*Cuando la pagina es visitada por primera vez*/
+/*Por default aparece violeta*/
+}
+a:hover{/*Cuando pasamos el mouse por encima del link*/
+	text-decoration: underline;
+}
+a:active{/*Lo que pasa cuando estas apretando el boton*/
+	color:#FF1E1E;
+}
+a:visited{/*Cuando ya hiciste click en la pagina*/
+
+}
+#tituloPrincipal:hover{
+	/*El hover es las acciones que van a pasar cuando pases el click por encima
+	de la id que referencias antes del hover*/
+	-webkit-transform: rotate(3deg);
+	/*Basicamente para que la rotacion no se haga tan brusca, el primer parametro en
+	segundos significa despues de cuanto tiempo despues de que el usuario paso el 
+	raton por ensima debe activarse y el segundo es en cuanto tiempo se va a 
+	realizar la totalidad de la transformacion*/
+	-webkit-transition: -webkit-transform 0.2s ease 0.4s; ;
+	box-shadow:#535353 0px 0px;
+}
+#letraTitulo{
+	font:bold 30px Verdana, Geneva, sans-serif;
+	text-shadow: #888787 1.5px 1.5px;
+	/*Color rgba: red/green/blue/transparecia siendo 0 transparante y 1 completamente 
+	visible*/
+	color:rgba(0,0,0,0.7);
+}
+#navegacionPrincipal{
+	background-color: #FFEF66;
+}
+#contenidoPrincipal{
+	background-color: #FF80E6;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+#etiquetasNavegacion{
+	background-color: #F8920E;
+	float:left;/* Para que aparezcan una al lado de la otra*/
+	margin-top: 25px;
+	margin-left: 30px;
+}
+
+#listaDesordenada{
+	list-style-type: none;/*Sacamos los puntitos que acompañan a los items*/
+	padding: 0;/*Sacamos todo el pading por default que aplica chrome a las pags*/
+}

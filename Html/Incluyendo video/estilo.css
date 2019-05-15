@@ -1,0 +1,27 @@
+#seccionVideo{
+	width: 50%;
+	height: 50%;
+	margin: 15px auto;
+	padding: 5px;
+	border: 2px solid #030303;
+	border-radius: 10px;
+	background-color: #E8E6E6;
+}
+nav{
+	margin: 5px;
+}
+#boton{
+	float:left;
+	margin-left: 1%;
+	width: 10px;
+	height: 10px;
+}
+
+#barra{
+	background-color: #FFFFFF;
+	padding: 3px;
+	margin-left: 10%;
+	width: 85%;
+	height: 14px;
+	border:1px solid #494848;
+}

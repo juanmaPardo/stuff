@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script>
+    document.onclick = function(e) { // shows click coordinates
+      coords.innerHTML = e.clientX + ':' + e.clientY;
+    };
+  </script>
+</head>
+
+<body>
+
+  Click anywhere to get window coordinates.
+  <br> That's for testing, to check the result you get by JavaScript.
+  <br>
+  <div id="coords">(click coordinates show up here)</div>
+  
+  <button onclick=outterLeftUpperCornerCoordinates(field)>OutterTop Left</button>
+  <button onclick=innerLeftUpperCornerCordinates(field)>Inner Top Left</button>
+  <button onclick=bottomRightOuterCornerCoordinates(field)>Bottom Right Outer</button>
+  <button onclick=bottomRightInnerCornerCoordinates(field)>Bottom Right Inner</button>
+  
+  <div id="result">The result from button coordinates</div></div>
+
+
+  <div id="field">
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+
+  <div class="triangle-right" style="left:-20px;top:-176px">1</div>
+  <div class="triangle-right" style="left:-10px;top:-178px">3</div>
+  <div class="triangle-right" style="left:190px;top:-40px">4</div>
+  <div class="triangle-right" style="left:200px;top:-42px">2</div>
+
+
+  <script>
+    function outterLeftUpperCornerCoordinates(id){
+      let idPosition = id.getBoundingClientRect();
+      result.innerHTML = Math.round(idPosition.left) +':' +Math.round(idPosition.top);
+    }
+    function innerLeftUpperCornerCordinates(id){
+      let idPosition = id.getBoundingClientRect();
+      let leftBorder = id.clientLeft;
+      let topBorder = id.clientTop;
+      let x = Math.round(idPosition.left  + leftBorder);
+      let y = Math.round(idPosition.top + topBorder);
+      result.innerHTML = x + ':' + y;
+    }
+    function bottomRightOuterCornerCoordinates(id){
+      let idPosition = id.getBoundingClientRect();
+      let idTotalWidth = id.offsetWidth;
+      let x = Math.round(idPosition.left + idTotalWidth);
+      let y = Math.round(idPosition.bottom);
+      result.innerHTML = x + ':' + y;
+    }
+    function bottomRightInnerCornerCoordinates(id){
+      let idPosition = id.getBoundingClientRect();
+      let idInnerWidth = id.clientWidth;
+      let idLeftBorderWidth = id.clientLeft;
+      x = Math.round(idPosition.left +  idInnerWidth + idLeftBorderWidth)
+      let idInnerHeight = id.clientHeight;
+      let idTotalHeight = id.offsetHeight;
+      let idTopBorderWidth = id.clientTop;
+      let idBottomBorderWidth = idTotalHeight - idInnerHeight - idTopBorderWidth;
+      y = Math.round(idPosition.bottom - idBottomBorderWidth);
+      result.innerHTML = x + ':' + y;
+    }
+  </script>
+
+</body>
+</html>

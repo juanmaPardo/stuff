@@ -1,0 +1,34 @@
+<!--
+ El fragment es un contenedor que contiene algo pero despues lo que hace es eso que contiene se lo pasa
+ a otro container y el desaparace, como un cubo que junta agua y despues la tira a otro cubo, el agua
+ pasa al otro cubo y el cubo donde estaba el agua desaparece
+ -->
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>sdadsadads</title>
+ </head>
+ <body>
+ 	<ul id="lista"></ul>
+
+ 	<script type="text/javascript">
+		function getListContent(){
+	 		let wrapper = DocumentFragment();
+ 			for(let i=1 ; i < 3 ; i++){
+ 				let li = document.createElement("li");
+ 				li.append(i);
+ 				wrapper.append(li);
+ 			}
+ 			return fragment;
+		}
+		lista.append(getListContent());
+		/*
+			<ul>
+ 			 <li>1</li>
+ 			 <li>2</li>
+ 			 <li>3</li>
+			</ul>
+		*/
+ 	</script>
+ </body>
+ </html>

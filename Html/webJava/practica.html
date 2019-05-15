@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="messages.css">
+  <meta charset="utf-8">
+</head>
+<style>
+  .guacanda button{
+    margin: 20px;
+  }
+  .guacanda.open button{
+    margin: 100px;
+  }
+</style>
+<body>
+
+  The button code (may need to adjust CSS):
+  <button class="remove-button">[x]</button>
+
+  <div id="uno">
+    <div id="dos" class="guacanda">
+      <button id="tres">Click me</button>
+    </div>
+  </div>
+  
+  <script>
+    let boton = document.getElementById("tres");
+    boton.onclick = function(){
+      let guacanda = document.querySelector(".guacanda");
+      guacanda.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>

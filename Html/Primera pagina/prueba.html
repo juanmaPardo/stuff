@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Probando cosas</title>
+		
+		<link rel="stylesheet" type="text/css" href="estilos.css">
+		<link rel="shortcut icon" type="ic_launcher.png" href="ic_launcher.png">
+
+		<meta name="keywords" content="practica, icono ">
+	</head>
+	<body>
+		<header id="tituloPrincipal">
+			<!--Strong es negrita, basicamente indicamos que esto es importante-->
+			<h1><strong><span id= "letraTitulo">Click me</span></strong></h1>
+		</header>
+		<nav id="navegacionPrincipal">
+			<a target="blank" href="https://www.google.com.ar/?hl=es"> Redireccion  Google</a>
+			<a href="#footerPagina"> Ir al footer</a>
+		</nav>
+		<section id="contenidoPrincipal">
+			<article>
+				<header> 
+					<h2 style="text-align: center;">Imagen - 200 x 200 </h2>
+				</header>
+					<p>
+						<mark>
+						Este es el contenido principal de la pagina, si añadimos
+					 	la imagen que es el icono de la ventana:
+					 	</mark>
+					 	<hr/>
+					 	<time datetime="2555/5/2" pubdate> Imagen creada el 2/5/2555</time>
+					</p>
+					<figure>
+						<!--Para insertar imagens se tiene que hacer adentro de figure-->
+						<img src="ic_launcher.png" width="200" height="200"> 
+						<figcaption>Icono pagina</figcaption>
+						<cite> Canal de thecodeman</cite><!--Cite es para referenciar a un autor, y cosas por el estilo-->
+					</figure>
+					<table border="1px" width="40%" cellpadding="7">
+						<!--Tr table row, td = columnaxD, th Table header lo pone
+							en negrita y ademas lo centra-->
+						<tr>
+							<!--Colspan= Cuantas columnas abarca este header-->
+							<th colspan="2">Contenedor 2 Columnas</th>
+						</tr>
+						<tr>
+							<th>Columna Uno</th>
+							<th>Columna Dos</th>
+						</tr>
+						<tr>
+							<td>F1C1 dato</td>
+							<td>F1C2 dato</td>
+						</tr>
+						<tr>
+							<td>F2C1 dato</td>
+							<td>F2C2 dato</td>
+						</tr>
+					</table>
+					
+					<!--Lo de acction y method es para dsps con java script hacer cosas
+						con esa informacion, meterla en una base de datos,etc-->
+					<form <!--action="accion" method="get"-->>
+						<!--Esto es para hacer formularios con entrada & stuff-->
+						Username: <input type="text" name="username" maxlength="10"><br/>
+						Password: <input type="password" name="password" maxlength="10"><br/>
+						Foto: <input type="file" name="fotoUsuario"><br/>
+
+						<p>Radio Button para mas de una opcion</p>
+						Male: <input type="radio" name="sex" value="male"><br/>
+						Female:<input type="radio" name="sex" value="female"><br/>
+
+						<p>Permite elegir mas de una opcion</p>
+						primeraOpcion:<input type="checkbox" name="opciones" value="firstOption"><br/>
+						segundaOpcion:<input type="checkbox" name="opciones" value="secondOption"><br/>
+						terceraOpcion:<input type="checkbox" name="opciones" value="thirdOption"><br/>
+						cuartaOpcion:<input type="checkbox" name="opciones" value="fourOption"><br/>
+						
+						<p>Elegir entre las opciones: </p>
+						<select name="DropBoxList">
+							<option value="fOption">First Option</option>
+							<option value="sOption">Second Option</option>
+							<option value="tOption">Third Option</option>
+							<option value="foOption">Fourth Option</option>
+						</select><br/>
+							
+						<p>TextArea para poder escribir: </p><br/>
+						<textarea name="textArea"></textarea><br/>
+						
+						<!--Basicamente esto es para enviar toda la informacion que
+							pusimos en el formulario-->
+						<input type="submit" name="Submit!" value="Submit!">
+					</form>
+				<footer>
+						<p> Esta es la parte de abajo del articulo de section</p>
+				</footer>
+			</article>
+			
+		</section>
+		<aside id = "etiquetasNavegacion">
+			<ul id= "listaDesordenada">
+			<li>Objeto uno</li>
+			<li>Objeto dos</li>
+			<li>Objeto tres</li>
+			</ul>
+			<ol>
+				<li>Objeto 1</li>
+				<li>Objeto 2</li>
+				<li>Objeto 3</li>
+			</ol>
+		</aside>
+		<footer id="footerPagina">
+			<small>Todos los derechos reservados</small><!-- para derechos reservados
+			y cosas por el estilo-->
+			<em>La parte de abajo de la pagina</em><!--Em es cursiva-->
+			<address>Telefono: 123456789</address><!--Addres es para las cosas de contacto, generalmente va en el footer, es una etiqueta blocklevel porque salta a la sig linea-->
+		</footer>
+	</body>
+</html>

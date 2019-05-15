@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  	html,body {
+		  width: 100%;
+		  height: 100%;
+		  padding: 0;
+		  margin: 0;
+		}
+
+		.cover-div {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  z-index: 9000;
+		  width: 100%;
+		  height: 100%;
+		  background-color: gray;
+		  opacity: 0.3;
+		}
+
+		#prompt-form {
+		  display: inline-block;
+		  padding: 5px 5px 5px 70px;
+		  width: 200px;
+		  border: 1px solid black;
+		  background: white url(https://en.js.cx/clipart/prompt.png) no-repeat left 5px;
+		  vertical-align: middle;
+		}
+
+		#prompt-form-container {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  z-index: 9999;
+		  width: 100%;
+		  height: 100%;
+		  text-align: center;
+		}
+
+		#prompt-form-container:before {
+		  display: inline-block;
+		  height: 100%;
+		  content: '';
+		  vertical-align: middle;
+		}
+
+		#prompt-form input[name="text"] {
+		  display: block;
+		  margin: 5px;
+		  width: 180px;
+		}
+  </style>
+</head>
+
+<body>
+  
+  <div id="restoPagina">
+    <p><h1>APRETA EL BOTON</h1></p>
+    <button id="form-trigger">Abrir formulario</button>
+  </div>
+  
+  <div id="prompt-form-container" hidden>
+    <form id="prompt-form" onsubmit=muestraContenido>
+      <div id="prompt-message">Enter something...
+        <br>Please..</div>
+      <input name="text" type="text">
+      <input type="submit" name="submitter" value="Ok">
+      <input type="button" name="cancel" value="Cancel"></div>
+    </form>
+  </div>
+
+  <script>
+    
+    
+    let promptContainer = document.getElementById("prompt-form-container");
+    let restoElementos = document.getElementById("restoPagina");
+    let formulario = document.getElementById("prompt-form");
+    let botonSubmit = formulario.submitter;
+    let botonCancelar = formulario.cancel;
+    let casillaTexto = formulario.text;
+    
+    function muestraContenido(){
+      alert("Presionaste: " + casillaTexto.value);
+      promptContainer.hidden = true;
+      restoElementos.classList.remove("cover-div");
+    } 
+    
+    function eventoTriggerFormulario(){
+      
+      botonSubmit.onclick = function(){
+        alert("Presionaste: " + casillaTexto.value);
+        promptContainer.hidden = true;
+        restoElementos.classList.remove("cover-div");
+      }
+      
+      botonCancelar.onclick = function(){
+        alert("Cancelaste el formulario");
+        promptContainer.hidden = true;
+        restoElementos.classList.remove("cover-div");
+      }
+      
+      document.getElementById("form-trigger").onclick = function(){
+        promptContainer.hidden = false;
+        restoElementos.classList.add("cover-div");
+        casillaTexto.focus();
+      };
+    }
+    
+    eventoTriggerFormulario();
+  </script>
+</body>
+
+</html>

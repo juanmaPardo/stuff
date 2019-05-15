@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    td select,
+    td input {
+      width: 150px;
+    }
+
+    #diagram td {
+      vertical-align: bottom;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #diagram div {
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  Deposit calculator.
+
+  <form name="calculator">
+    <table>
+      <tr>
+        <td>Initial deposit</td>
+        <td>
+          <input name="deposit" type="number" value="10000" data-action="depositChange" required>
+        </td>
+      </tr>
+      <tr>
+        <td>How many months?</td>
+        <td>
+          <select name="months" data-action="monthsChange">
+            <option value="3">3 (minimum)</option>
+            <option value="6">6 (half-year)</option>
+            <option value="12" selected>12 (one year)</option>
+            <option value="18">18 (1.5 years)</option>
+            <option value="24">24 (2 years)</option>
+            <option value="30">30 (2.5 years)</option>
+            <option value="36">36 (3 years)</option>
+            <option value="60">60 (5   years)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Interest per year?</td>
+        <td>
+          <input name="interest" type="number" value="5" data-action="interestChange" required>
+        </td>
+      </tr>
+    </table>
+
+
+  </form>
+
+
+  <table id="diagram">
+    <tr>
+      <th>Was:</th>
+      <th>Becomes:</th>
+    </tr>
+    <tr>
+      <th id="money-before"></th>
+      <th id="money-after"></th>
+    </tr>
+    <td>
+      <div style="background: red;width:40px;height:100px"></div>
+    </td>
+    <td>
+      <div style="background: green;width:40px;height:0" id="height-after"></div>
+    </td>
+  </table>
+
+  <script>
+
+    let form = document.forms.calculator;
+    
+    
+    class ProfitHandler{
+      constructor(deposit,months,interest){
+        this.diagramData = {
+          afterDiagram : document.getElementById("height-after"),
+          moneyBefore : document.getElementById("money-before"),
+          moneyAfter : document.getElementById("money-after")
+        };
+        this.deposit = deposit;
+        this.months = months;
+        this.interest = interest;
+        this.depositChange(this.deposit);//Para que cuando se crea se setee el grafico
+        this.deposit.oninput = this.onValueChange.bind(this);
+        this.interest.oninput = this.onValueChange.bind(this);
+        this.months.onchange = this.onValueChange.bind(this);
+      }
+      
+      getPixelHeightIncrease(){
+        //La idea es calcular cuanto es el incremento en pixeles en relacion
+        //a lo que se incremento, como sabemos que el inicial deposito son 100px
+        return (100 / this.deposit.value);
+      }
+      
+      getProfit(){
+        let years = this.months.value / 12;
+        return Math.round(this.deposit.value * (1 + this.interest.value * years));
+      }
+      
+      adjustDiagramHeight(moneyAfter){
+        //El adjustedHeight es para que los pixeles no se vallan al cielo
+        //despues de superar el deposito inicial y se mantenga a una escala visible
+        let profit = moneyAfter - this.deposit.value;
+        let newHeight =  this.getPixelHeightIncrease() * moneyAfter;
+        let heightProfit = this.getPixelHeightIncrease() * profit;
+        let heightDepositValue = 100;
+        let adjustedHeight = heightDepositValue + (heightProfit/27);
+        
+        return (moneyAfter > this.deposit.value) ? adjustedHeight : newHeight;
+      }
+    
+      depositChange(newDeposit){
+        let newProfit = this.getProfit();
+        //alert("LLAMA");
+        let newHeight = this.adjustDiagramHeight(newProfit);
+        
+        this.diagramData.moneyBefore.innerHTML = newDeposit.value;
+        this.diagramData.moneyAfter.innerHTML = newProfit;
+        this.diagramData.afterDiagram.style.height = newHeight + 'px';
+      }
+      
+      monthsChange(newMonths){
+        let newProfit = this.getProfit();
+        let newHeight = this.adjustDiagramHeight(newProfit);
+        
+        this.diagramData.moneyAfter.innerHTML = newProfit;
+        this.diagramData.afterDiagram.style.height = newHeight + 'px';
+      }
+      
+      interestChange(newInterest){
+        let newProfit = this.getProfit();
+        let newHeight = this.adjustDiagramHeight(newProfit);
+        
+        this.diagramData.moneyAfter.innerHTML = newProfit;
+        this.diagramData.afterDiagram.style.height = newHeight + 'px';
+      }
+        
+      onValueChange(event){
+        let changedParameter = event.target.dataset.action;
+          
+        if(!changedParameter){
+          return;
+        }
+          
+        this[changedParameter](event.target);
+      }
+      
+    }
+    
+    new ProfitHandler(form.deposit,form.months,form.interest);
+    
+   
+  </script>
+
+
+</body>
+</html>

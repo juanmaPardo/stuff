@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #ball {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br>
+
+
+  <button id="button">Press Me</button>
+  <div id="text"></div>
+
+  <script>
+    /*let elemento = document.getElementById("button");
+    elemento.addEventListener("click",addLetter);
+    function addLetter(){
+      document.getElementById("text").innerHTML += "dsal";
+    }*/
+    class TextHandler{
+      constructor(texto){
+        this.texto = texto;
+      }
+      handleEvent(event){
+        this.texto.innerHTML +=" hola";
+      }
+    }
+
+    let elemento = document.getElementById("button");
+    textHandler = new TextHandler(document.getElementById("text"));
+    elemento.addEventListener("click",textHandler);
+  </script>
+
+</body>

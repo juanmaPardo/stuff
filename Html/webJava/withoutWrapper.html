@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>sdadsadads</title>
+ </head>
+ <body>
+ 	<ul id="lista"></ul>
+
+ 	<script type="text/javascript">
+		function getListContent(){
+	 		let result = [];
+ 			for(let i=1 ; i < 3 ; i++){
+ 				let li = document.createElement("li");
+ 				li.append(i);
+ 				result.push(li);
+ 			}
+ 			return result;
+		}
+		lista.append(...getListContent());
+		let divARemover = document.createElement("div");
+		divARemover.className = "alert alert-succes";
+		divARemover.innerHTML = "<strong>Hi there</strong> This message is gonna be deleted";
+		document.body.append(divARemover);
+		setTimeout(() => div.remove(),1000);
+
+		/*
+			<ul id="lista">
+ 			 <li>1</li>
+ 			 <li>2</li>
+ 			 <li>3</li>
+			</ul>
+		*/
+ 	</script>
+ </body>
+ </html>

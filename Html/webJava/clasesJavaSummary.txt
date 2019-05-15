@@ -1,0 +1,1110 @@
+							METODOS DE SELECCION
+
+
+Para seleccionar cosas:
+
+
+	Method						Searches by...	Can call on an element?		
+	getElementById				id						-					
+	getElementsByName			name					-			
+	getElementsByTagName		tag or '*'				✔			
+	getElementsByClassName		class					✔			
+	querySelector				CSS-selector			✔			
+	querySelectorAll			CSS-selector			✔
+
+--------------------------------------------------------------------------------------------
+
+							PROPIEDADES DE LOS NODOS
+
+Propiedades de los nodos, refiriendo a los nodos como todos los html tags que estan en el DOM:
+	For all nodes: parentNode, childNodes, firstChild, lastChild, previousSibling, nextSibling.
+	For element nodes only: parentElement, children, firstElementChild, lastElementChild, 
+							previousElementSibling, nextElementSibling.
+--------------------------------------------------------------------------------------------
+
+
+							ATRIBUTOS DE LOS NODOS
+
+
+SETEAR Y OBTENER ATRIBUTOS DE UN NODO
+
+
+	elem.hasAttribute(name) – to check for existence.
+	elem.getAttribute(name) – to get the value.
+	elem.setAttribute(name, value) – to set the value.
+	elem.removeAttribute(name) – to remove the attribute.
+	elem.attributes is a collection of all attributes.
+	Los que son del estilo data-target son de la clase dataset, entonces seria por ejemplo:
+		idElemento = elem.id;
+		idElemento.dataset.dataTarget = "collapse";
+
+--------------------------------------------------------------------------------------------
+
+						METODOS DE CREACION
+
+
+CREACION DE ELEMENTOS
+
+
+	document.createElement(tag) – creates an element with the given tag,
+	elem.cloneNode(deep) – clones the element, if deep==true then with all descendants.
+
+--------------------------------------------------------------------------------------------
+
+						METODOS DE INSERCION
+
+
+INSERCION-ELIMINACION NODOS
+
+	DESDE EL PADRE:
+
+		parent.appendChild(node)
+		parent.insertBefore(node, nextSibling)
+		parent.removeChild(node)
+		parent.replaceChild(newElem, node)
+		All these methods return node.
+
+
+
+	TENIENDO UNA LISTA DE NODOS O STRINGS:
+
+		node.append(...nodes or strings) – insert into node, at the end,
+		node.prepend(...nodes or strings) – insert into node, at the beginning,
+		node.before(...nodes or strings) –- insert right before node,
+		node.after(...nodes or strings) –- insert right after node,
+		node.replaceWith(...nodes or strings) –- replace node.
+		node.remove() –- remove the node.
+
+--------------------------------------------------------------------------------------------
+
+
+							INFORMACION CLASE DEL ELEMENTO
+
+
+
+OBTENCION CLASE DE UN NODO:
+
+	className – the string value, good to manage the whole set of classes.
+	classList – the object with methods add/remove/toggle/contains, good for individual classes.
+	Con classList podes obtener todas las clases de un elemento y agregar cosas, ejemplo:
+		elem.classList.add("newClass")
+
+--------------------------------------------------------------------------------------------
+
+
+						GEOMETRIA ELEMENTOS EN PAGINA
+
+RELACIONES CON SU CONTAINER
+
+	offsetParent – is the nearest positioned ancestor or td, th, table, body.
+	idElemento.offSetTop : Generalmente nulo, pero es cuando dicen, top: Xpx
+	idElemento.offSetLeft : Generlamente nulo, pero es cuando dicen, left: Xpx
+
+
+
+PARA SABER EL ALTO/ANCHO NETO QUE OCUPA:
+
+		idElemento.offsetWidth = El ancho de un elemento, incluyendo los paddings, bordes, scroll,
+								 y todo lo que tenga, muestra cuanto ocupa con todo eso junto.
+	 	idElemento.offsetHeight = Lo mismo que el de arriba pero con la altura.
+	 	(Si un elemento esta oculto, ambos valores seran cero)
+
+
+
+PARA SABER EL TAMAÑO DEL BORDE:
+
+ 		idElemento.clientTop = El borde hacia arriba
+ 		idElemento.clientLeft = El borde hacia la izquierda
+
+
+PARA SABER EL TAMAÑO DE ALGO SIN BORDES NI SCROLLS
+
+ 		idElemento.clientWidth = idem que offSetWidth pero no tiene en cuenta el scroll ni bordes
+ 		idElemento.clientHeigth = idem que el de arriba
+
+
+PARA SABER LO SCROLLEADO:
+
+ 		scrollWidth/scrollHeight – the width/height of the content including the scrolled out parts. 
+ 								   Also includes paddings, but not the scrollbar.
+		scrollLeft/scrollTop – width/height of the scrolled out part of the element, 
+							   starting from its upper-left corner.
+		¿Como calcular el ancho del scroll?
+			let anchoScroll = idElemento.offSetWidth - idElemento.clientWidth
+
+
+
+PARA SABER LA RESOLUCION DE UNA PANTALLA:
+
+		alert( window.innerWidth ); // full window width
+		alert( document.documentElement.clientWidth ); // window width minus the scrollbar
+
+	
+		let scrollHeight = Math.max(
+  			document.body.scrollHeight, document.documentElement.scrollHeight,
+  			document.body.offsetHeight, document.documentElement.offsetHeight,
+  			document.body.clientHeight, document.documentElement.clientHeight);
+
+
+
+PARA SABER CUANTO SCROLLIO EL USUARIO PARA ABAJO EN LA PAGINA:
+
+		alert('Current scroll from the top: ' + window.pageYOffset);
+		alert('Current scroll from the left: ' + window.pageXOffset);
+
+
+
+
+PARA SCROLLEAR PARA ABAJO:
+
+		The method scrollBy(x,y) scrolls the page relative to its current position. 
+			For instance, scrollBy(0,10) scrolls the page 10px down.
+
+
+
+PARA SCROLLEAR A UNA COORDINADA DETERMINADA:
+
+		The method scrollTo(pageX,pageY) scrolls the page relative to the document’s top-left corner. 
+		It’s like setting scrollLeft/scrollTop.To scroll to the very beginning, we can use scrollTo(0,0)
+
+
+
+
+SCROLL HASTA LA ALTURA DE UN ELEMENTO:
+
+		The call to elem.scrollIntoView(top) scrolls the page to make elem visible. It has one argument:
+			if top=true (that’s the default), then the page will be scrolled to make elem appear 
+				on the top of the window. The upper edge of the element is aligned with the window top.
+		
+			if top=false, then the page scrolls to make elem appear at the bottom. 
+						The bottom edge of the element is aligned with the window bottom.
+
+
+
+
+COMO BLOQUEAR EL SCROLL:
+
+		document.body.style.overflow = "hidden". The page will freeze on its current scroll.
+		It doesn't work only with body, but also with other elements, to resume it, we can say:
+		document.body.style.overflow = ""
+
+--------------------------------------------------------------------------------------------
+
+
+
+							COORDENADAS DE LOS ELEMENTOS
+
+
+
+TIPOS DE COORDENADAS:
+
+		Dos sistemas: Relativo a la ventana o relativo al documento
+	
+
+
+
+RELATIVO A LA VENTANA:
+
+		Window coordinates start at the upper-left corner of the window.
+		The method elem.getBoundingClientRect() returns window coordinates for elem as an object with properties:
+			top – Y-coordinate for the top element edge,
+			left – X-coordinate for the left element edge,
+			right – X-coordinate for the right element edge,(empezando desde el corner inferior derecho)
+			bottom – Y-coordinate for the bottom element edge.(del corner inferior derecho hacia arriba)
+		DATOS: 
+			si por ejemplo uno de los resultados es negativo implica que el usurio had scrolled past it.
+			Podemos obtener el tamaño del 'objeto' si hacemos: height=bottom-top, width=right-left	
+
+		Obtener el elemento mas cercano-alto en jerarquia de una posicion en especifico:
+			The call to document.elementFromPoint(x, y) returns the most nested element 
+			at window coordinates (x, y).
+
+
+
+
+RELATIVO AL DOCUMENTO:
+
+		Implica al inicio del documento, es decir si scrolleas para abajo seguis yendo mas para abajo
+		en la coordenada Y, en cambio en la ventana las coordenadas son relativas a la ventana, digamos
+		que el documento cada elemento tiene coordenadas unicas, ya que son relativas al mismo, en cambio
+		la ventana es relativa a la posicion de acuerdo al campo visible actual.
+
+		DocumentoY = VentanaY + Lo scrolliado para abajo (pageYOffset)
+		DocumentoX = VentanaX + lo scrolleado para la derecha(pageXOffset)
+
+-----------------------------------------------------------------------------------------------
+
+
+							TIPO DE EVENTOS
+
+	Mouse events:
+		click – when the mouse clicks on an element (touchscreen devices generate it on a tap).
+		contextmenu – when the mouse right-clicks on an element.
+		mouseover / mouseout – when the mouse cursor comes over / leaves an element.
+		mousedown / mouseup – when the mouse button is pressed / released over an element.
+		mousemove – when the mouse is moved.
+	Form element events:
+		submit – when the visitor submits a <form>.
+		focus – when the visitor focuses on an element, e.g. on an <input>
+	Keyboard events:
+		keydown and keyup – when the visitor presses and then releases the button.
+	Document events:
+		DOMContentLoaded – when the HTML is loaded and processed, DOM is fully built.
+	CSS events:
+		transitionend – when a CSS-animation finishes.
+
+--------------------------------------------------------------------------------------------
+
+							
+							MANEJO DE EVENTOS BASICO
+
+
+HANDLE DE UN EVENTO DESDE HTML:
+
+		on<nombreEvento>, ejemplo:
+		<input type="button" id="button" value="Button" onclick="alert('Click!')">
+
+
+
+HANDLE DE UN EVENTO HTML + JS:
+
+		<input type="button" id="button" value="Button">
+		<script>
+		  button.onclick = function() {
+		    alert('Click!');
+		  };
+		</script>
+
+
+¡COMO SE COMPORTA EL THIS EN UNA LLAMADA DESDE EL TAG:
+
+		Cuando usamos el this se refiere al valor dentro del tag que llamo a la funcion, ejemplo:
+			<button onclick="alert(this.innerHTML)">Click me</button> 
+
+
+
+
+COMO DESENCADENAR MAS DE UNA ACCION ANTE EL TRIGGER DE UN EVENTO:
+
+		Se usan eventListeners, en especial, addEventListener and removeEventListener.
+		
+		element.addEventListener(event, handler[, options]);
+
+		Explicacion parametros:
+			event:
+				Event name, e.g. "click"
+			handler:
+				The handler function.
+			options:
+				An additional optional object with properties:
+					once: if true, then the listener is automatically removed after it triggers.
+					capture: the phrase where to handle the event, to be covered later in the chapter 
+							 Bubbling and capturing. For historical reasons, options can also be false/true
+							 ,that’s the same as {capture: false/true}.
+					passive: if true, then the handler will not preventDefault(), 
+							 we’ll cover that later in Browser default actions.
+
+	 	Para remover se usa la misma funcion:
+	 		element.removeEventListener(event, handler[, options]);
+
+	 	Ejemplo practico:
+	 		function handler() {
+			  alert( 'Thanks!' );
+			}
+
+			input.addEventListener("click", handler);
+			// ....
+			input.removeEventListener("click", handler);
+
+		Multiple handlers for the same event works this way:
+			function handler1() {
+	    	  alert('Thanks!');
+			};
+
+			function handler2() {
+			  alert('Thanks again!');
+			}
+
+	        elem.onclick = () => alert("Hello");
+			elem.addEventListener("click", handler1); // Thanks!
+			elem.addEventListener("click", handler2); // Thanks again!
+
+
+
+--------------------------------------------------------------------------------------------
+
+
+							TRATADO COMPLETO EVENTOS
+
+
+CLASE EVENT OBJECT:
+
+		Nos permite tratar los eventos de una manera mas completa.
+		Ejemplo:
+			<input type="button" value="Click me" id="elem">
+			<script>
+			  elem.onclick = function(event){
+			    // show event type, element and coordinates of the click
+			    alert(event.type + " at " + event.currentTarget);
+			    alert("Coordinates: " + event.clientX + ":" + event.clientY);
+			  };
+			</script>
+
+			Algunos parametros:
+				event.type
+					Event type, here it’s "click".
+				event.currentTarget
+					Element that handled the event. That’s exactly the same as this, 
+					unless you bind this to something else, and then event.currentTarget becomes useful.
+				event.clientX / event.clientY
+					Window-relative coordinates of the cursor, for mouse events.
+
+--------------------------------------------------------------------------------------------
+
+
+
+						TRATADO DE EVENTO CON OBJETOS
+
+
+TRATAR EVENTO CON UN OBJETO COMO PARAMETRO:
+
+		Permite que un objeto maneje el tratado de un evento, ejemplo:
+			<button id="elem">Click me</button>
+			<script>
+			  elem.addEventListener('click', {
+			    handleEvent(event) {
+			      alert(event.type + " at " + event.currentTarget);
+			    }
+			  });
+			</script>
+
+--------------------------------------------------------------------------------------------
+
+
+
+							TRATADO DE EVENTOS CON CLASES
+
+
+TRATAR UN EVENTO UTILIZANDO UNA CLASE:
+
+		Same as before, but now a class is responsable for handling the event:
+			<button id="elem">Click me</button>
+			<script>
+			  class Menu {
+			    handleEvent(event) {
+			      switch(event.type) {
+			        case 'mousedown':
+			          elem.innerHTML = "Mouse button pressed";
+			          break;
+			        case 'mouseup':
+			          elem.innerHTML += "...and released.";
+			          break;
+			      }
+			    }
+			  }
+
+			  let menu = new Menu();
+			  elem.addEventListener('mousedown', menu);
+			  elem.addEventListener('mouseup', menu);
+			</script>
+
+		If you want to flex your programming skills:
+			<button id="elem">Click me</button>
+			<script>
+			  class Menu {
+			    handleEvent(event) {
+			      // mousedown -> onMousedown
+			      let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+			      this[method](event);
+			    }
+
+			    onMousedown() {
+			      elem.innerHTML = "Mouse button pressed";
+			    }
+
+			    onMouseup() {
+			      elem.innerHTML += "...and released.";
+			    }
+			  }
+
+			  let menu = new Menu();
+			  elem.addEventListener('mousedown', menu);
+			  elem.addEventListener('mouseup', menu);
+			</script>
+
+--------------------------------------------------------------------------------------------
+
+
+						PRINCIPIO DE BUBBLING
+
+
+PRINCIPIO BASICO:
+
+	The bubbling principle is simple.
+
+	When an event happens on an element, it first runs the handlers on it, then on its parent, 
+	then all the way up on other ancestors
+
+
+
+EJEMPLO PRACTICO:
+
+	Si clickeamos en p, hace su alert y el de todos sus ancestros.
+	<style>
+	  body * {
+	    margin: 10px;
+	    border: 1px solid blue;
+	  }
+	</style>
+
+	<form onclick="alert('form')">FORM
+	  <div onclick="alert('div')">DIV
+	    <p onclick="alert('p')">P</p>
+	  </div>
+	<form>
+
+
+
+COMO SABER EL CAUSANTE ORIGINARIO DEL EVENTO (LA PRIMERA PIEZA DE DOMINO QUE HIZO ACTUAR AL RESTO):
+
+	The most deeply nested element that caused the event is called a target element, accessible as event.target.
+
+	Note the differences from this (=event.currentTarget):
+
+	event.target – is the “target” element that initiated the event, it doesn’t change 
+				   through the bubbling process.
+	this – is the “current” element, the one that has a currently running handler on it.
+
+
+
+
+COMO PARAR EL BUBBLING:
+	
+	The method for it is event.stopPropagation().
+
+	EJEMPLO:
+		<body onclick="alert(`the bubbling doesn't reach here`)">
+		  <button onclick="event.stopPropagation()">Click me</button>
+		<body>
+
+	event.stopImmediatePropagation() // No deja correr a los otros handlers del eventos
+
+
+CAPTURING:
+
+	Es el proceso inverso, se trigea a el mismo y a todos sos descendientes, para eso hay que setear
+	el segundo argumento de addEventListener en true, ejemplo:
+	elemId.addEventListener(funcion,true);//el true habilita el capturing
+
+----------------------------------------------------------------------------------------------------
+
+
+
+							EVENT DELEGATION
+
+
+Es uno de los mejores patrones de event handling que se hace mediante bubbling and capturing
+
+IDEA PRINCIPAL:
+
+	Se puede dar en dos casos diferentes, o hay multiples elementos que comparten una misma accion,
+	entonces mientras de agregarla en todos haces que todos compartan la misma y estas optimizando,
+	ejemplo de esto esta en eventDelegation.html.
+
+	O se puede dar cuando queremos que un evento pueda desencadenar diferentes tareas
+	de acuerdo a que fue lo que se clickeo, para eso se usa data-action
+
+
+
+EJEMPLO DATA-ACTION:
+
+<div id="menu">
+  <button data-action="save">Save</button>
+  <button data-action="load">Load</button>
+  <button data-action="search">Search</button>
+</div>
+
+<script>
+  class Menu {
+    constructor(elem) {
+      this._elem = elem;
+      elem.onclick = this.onClick.bind(this); // (*)
+    }
+
+    save() {
+      alert('saving');
+    }
+
+    load() {
+      alert('loading');
+    }
+
+    search() {
+      alert('searching');
+    }
+
+    onClick(event) {
+      //(*) Si en el constructor no bindeabamos a la clase aca lo que hubiese pasado es que el
+      // this hubiese hecho referencia al elemento y no a la clase y no hubiesemos podido
+      // llamar al metodo que ejecuta la accion
+      let action = event.target.dataset.action;
+      if (action) {
+        this[action]();
+      }
+    };
+  }
+
+  new Menu(menu);
+</script>//
+
+------------------------------------------------------------------------------------------4
+
+						
+						THE BEHAVIOUR PATTERN
+
+
+IDEA PRINCIPAL:
+
+	We add a special attribute to an element.
+	A document-wide handler tracks events, and if an event happens on an attributed
+	element – performs the action.
+
+
+
+EJEMPLO:
+
+	Counter: <input type="button" value="1" data-counter>
+	One more counter: <input type="button" value="2" data-counter>
+
+	<script>
+	  document.addEventListener('click', function(event) {
+
+	    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+	      event.target.value++;
+	    }
+
+	  });
+	</script>//
+
+
+USANDO TOGGLER CON ESTE PATRON:
+
+	<!doctype html>
+	<body>
+	<button data-toggle-id="subscribe-mail">
+	  Show the subscription form
+	</button>
+
+	<button>This one does Nothing</button>
+
+	<button data-toggle-id="subscribe-mail">This one works aswell</button>
+
+	<form id="subscribe-mail" hidden>
+	  Your mail: <input type="email">
+	</form>
+
+	<script>
+	  document.addEventListener('click', function(event) {
+	    let id = event.target.dataset.toggleId;
+	    if (!id) return;
+
+	    let elem = document.getElementById(id);
+
+	    elem.hidden = !elem.hidden;
+	  });
+	</script>
+	</body>//
+
+
+-------------------------------------------------------------------------------------------------
+							
+
+							PREVENIR ACCIONES POR DEFAULT DEL BROWSER
+
+
+La idea es que para ciertas acciones el browser realiza una accion x default, por ejemplo, si damos
+click en un link nos redirige a ese sitio, pero hay maneras de desactivar ese tipo de cosas, por
+ejemplo con on click, si retornamos false, entonces el browser no realiza ninguna accion.
+
+
+PREVENIR SER REDIRIGIDO:
+
+	menu.onclick = function(event) {
+	  if (event.target.nodeName != 'A') return;
+
+	  let href = event.target.getAttribute('href');
+	  alert( href ); // ...can be loading from the server, UI generation etc
+
+	  return false; // prevent browser action (don't go to the URL)
+	};		
+
+
+
+PREVENIR EVENTOS EN CADENA:
+
+	El otro tema esta en los eventos en cadena, si prevenimos un evento que desencadena otros,entonce
+	esos otros no seran desencadenados, por ejemplo, en un formulario cuando damos click se elimina
+	el placeholder, pero eso puede ser prevenido si cancelamos el mousedown, por ejemplo:
+
+	<input value="Focus works" onfocus="this.value=''">
+	<input onmousedown="return false" onfocus="this.value=''" value="Click me">
+
+
+UTILIDAD?
+
+	Bueno, la principal utilidad es por ejemplo implementar a nuestra manera cosas que son 
+	implementadas x el browser, o simplemente ignorarlas, por ejemplo cuando damos click derecho
+	en algo el browser nos abre su ventanita, pero eso lo podemos cancelar y cuando apretes
+	click derecho sobre algo se abra lo que a vos se te ocurra.
+	Otro uso es para impedir el bubbling y que solo sea resulto por algo, ejemplo:
+
+	<p>Right-click for the document menu (fixed with event.defaultPrevented)</p>
+	<button id="elem">Right-click for the button menu</button>
+
+	<script>
+	//Oncontextmenu = cuando aprieta click derecho sobre ese elemento
+	  elem.oncontextmenu = function(event) {
+	    event.preventDefault();
+	    alert("Button context menu");
+	  };
+
+	  document.oncontextmenu = function(event) {
+	  	//Si ya se hizo un handle del evento y se previno otras acciones entonces no hagas nada
+	    if (event.defaultPrevented) return;
+
+	    //Si todavia no se hizo nada con el elemento entonces hace esto.
+	    event.preventDefault();
+	    alert("Document context menu");
+	  };
+	<script>
+
+----------------------------------------------------------------------------------------------
+
+
+							CREACION DE EVENTOS
+
+
+CREACION:
+
+	let event = new Event(eventType [, options]);
+		event type – may be any string, like "click" or our own like "hey-ho!".
+
+		options – the object with two optional properties:
+
+		bubbles: true/false – if true, then the event bubbles.
+		cancelable: true/false – cancelable: true if the event.preventDefault() should work.
+		By default both are false: {bubbles: false, cancelable: false}.
+
+
+
+DISPATCH:
+	La idea es crear un evento que nosotros queramos con la informacion que deseamos que reciba
+	y que despues ese evento pueda ser catcheado y usado por otros elementos. Esa informacion
+	adicional va a estar situada en el objeto event.
+
+	EJEMPLO:
+
+		<h1 id="elem">Hello for John!</h1>
+
+		<script>
+		  // additional details come with the event to the handler
+		  elem.addEventListener("hello", function(event) {
+		    alert(event.detail.name);
+		  });
+
+		  elem.dispatchEvent(new CustomEvent("hello", {
+		    detail: { name: "John" }
+		  }));
+		<script>
+
+	OTRO EJEMPLO:
+
+		<button id="menu">Menu (click me)</button>
+
+		<script>
+		  // 1 -> nested -> 2
+		  menu.onclick = function() {
+		    alert(1);
+
+		    // alert("nested")
+		    menu.dispatchEvent(new CustomEvent("menu-open", {
+		      bubbles: true
+		    }));
+
+		    alert(2);
+		  };
+
+		  document.addEventListener('menu-open', () => alert('nested'))
+		<script>
+
+----------------------------------------------------------------------------------------------
+
+						TIPO DE EVENTOS CREABLES
+
+
+MOUSE EVENTS
+
+	mousedown/mouseup
+		Mouse button is clicked/released over an element.
+
+	mouseover/mouseout
+		Mouse pointer comes over/out from an element.
+
+	mousemove
+		Every mouse move over an element triggers that event.
+
+	click
+		Triggers after mousedown and then mouseup over the same element if the left mouse button was used.
+	
+	contextmenu
+		Triggers after mousedown if the right mouse button was used.
+	
+	dblclick
+		Triggers after a double click over an element.
+
+
+
+
+COMO SABER QUE BOTON FUE PRECIONADO:
+
+			event.which == 1 – the left button
+			event.which == 2 – the middle button
+			event.which == 3 – the right button
+
+
+
+
+COMBINACIONES PARA ACTIVAR CLICK:
+
+	shiftKey
+	altKey
+	ctrlKey
+	metaKey (Cmd for Mac)
+
+	EJEMPLO:
+		<button id="button">Alt+Shift+Click on me!<button>
+
+		<script>
+		  button.onclick = function(event) {
+		    if (event.altKey && event.shiftKey) {
+		      alert('Hooray!');
+		    }
+		  };
+		<script>
+
+
+
+
+COORDENADAS PARA MOUSE EVENTS:
+	Window-relative: clientX and clientY.
+	Document-relative: pageX and pageY.
+
+	EJEMPLO:
+		<input onmousemove="this.value=event.clientX+':'+event.clientY" value="Mouse over me">
+
+
+
+
+MOUSE MOVIMIENTO:
+
+	Para MOUSEOVER
+		event.target = El elemnto en donde el mouse esta apuntando.
+		event.relatedTarget = El ultimo elemento que paso por encima.
+
+	Para MOUSEOUT:
+		event.target = El elemento del que el mouse acaba de salir
+		event.relatedTarget = Es el elemento al que ahora esta apuntando.
+
+	MOUSEENTER - MOUSELEAVE:
+		Son como mouseout,mouseover, pero la diferencia es que las transiciones
+		dentro del elemento no son contadas, por ejemplo si salgo del padre al hijo
+		no va a contar el mouseleave porque seguimos adentro, otra cosa importante
+		es que mouseenter y mouseleave no hacen bubble
+
+-------------------------------------------------------------------------------------------------
+		
+							KEY EVENTS
+
+
+EVENTOS RELACIONADOS A LAS TECLAS:
+	The keydown events happens when a key is pressed down, and then keyup – when it’s released.
+
+	event.key => la letra que fue precionada
+	event.code => Algo parecido
+
+	Ejemplo:
+		
+		Key				event.key				event.code
+		Z				z (lowercase)				KeyZ
+		Shift+Z			Z (uppercase)				KeyZ
+
+	Ejemplo Practico:
+		<script>
+		function checkPhoneKey(key) {
+		  return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-' ||
+		    key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+		}
+		<script>
+		<input onkeydown="return checkPhoneKey(event.key)" placeholder="Phone, please" type="tel">
+
+
+-------------------------------------------------------------------------------------------------
+
+			
+									SCROLLING
+
+
+Son los eventos relacionados a cuando haces un scroll sobre algun elemento, ejemplo:
+
+window.addEventListener('scroll', function() {
+  document.getElementById('showScroll').innerHTML = pageYOffset + 'px';
+});
+
+
+-------------------------------------------------------------------------------------------------
+
+
+								FORMULARIOS
+
+
+Es para poder trabajar con formularios de manera mas comoda y facil, para eso si le damos un nombre
+al campo al que queremos acceder podemos obtener datos del elemento mucho mas facil.
+En donde: document.forms.my - the form with name="my"
+
+EJEMPLO:
+	<form name="my">
+	  <input name="one" value="1">
+	  <input name="two" value="2">
+	</form>
+
+	<script>
+	  // get the form
+	  let form = document.forms.my; // <form name="my"> element
+
+	  // get the element
+	  let elem = form.elements.one; // <input name="one"> element
+
+	  alert(elem.value); // 1
+	<script>
+
+
+
+¿Que pasa si hay mas de un campo con el mismo nombre? Entonces:
+
+	<form>
+	  <input type="radio" name="age" value="10">
+	  <input type="radio" name="age" value="20">
+	<form>
+
+	<script>
+	let form = document.forms[0];
+
+	let ageElems = form.elements.age;
+
+	alert(ageElems[0].value); // 10, the first input value
+	<script>
+
+
+
+Que pasa si esta dentro de otra cosa?
+
+	<body>
+	  <form id="form">
+	    <fieldset name="userFields">
+	      <legend>info</legend>
+	      <input name="login" type="text">
+	    <fieldset>
+	  <form>
+
+	  <script>
+	    alert(form.elements.login); // <input name="login">
+
+	    let fieldset = form.elements.userFields;
+	    alert(fieldset); // HTMLFieldSetElement
+
+	    // we can get the input both from the form and from the fieldset
+	    alert(fieldset.elements.login == form.elements.login); // true
+	  <script>
+	<body>
+
+
+
+
+PROPIEDADES DE LOS SELECT/OPTION:
+
+	LOS SELECT:
+		select.options – the collection of <option> elements,
+		select.value – the value of the chosen option,
+		select.selectedIndex – the number of the selected option.
+
+		EJEMPLO:
+			<select id="select">
+			  <option value="apple">Apple</option>
+			  <option value="pear">Pear</option>
+			  <option value="banana">Banana</option>
+			<select>
+
+			<script>
+			  // all three lines do the same thing
+			  select.options[2].selected = true;
+			  select.selectedIndex = 2;
+			  select.value = 'banana';
+			<script>
+
+		
+		QUE PASA CON SELECCION MULTIPLE:
+			<select id="select" multiple>
+			  <option value="blues" selected>Blues<option>
+			  <option value="rock" selected>Rock<option>
+			  <option value="classic">Classic<option>
+			<select>
+
+			<script>
+			  //get all selected values from multi-select
+			  let selected = Array.from(select.options)
+			    .filter(option => option.selected)
+			    .map(option => option.value);
+
+			  alert(selected); // blues,rock
+			<script>
+
+	LOS OPTION:
+		Basicamente los select estan compuestos por options
+
+		option = new Option(text, value, defaultSelected, selected);
+
+		text – the text inside the option,
+		value – the option value,
+		defaultSelected – if true, then selected attribute is created,
+		selected – if true, then the option is selected.
+
+
+	EJEMPLO OBTENER OPCION SELECCIONADA Y AGREGAR OPCION:
+
+		<body>
+		<select id="genres">
+		  <option value="rock">Rock</option>
+		  <option value="blues" selected>Blues</option>
+		<select>
+
+		<script>
+		  // 1)
+		  let selectedOption = genres.options[genres.selectedIndex];
+		  alert( selectedOption.value );
+
+		  // 2)
+		  let newOption = new Option("Classic", "classic");
+		  genres.append(newOption);
+
+		  // 3)
+		  newOption.selected = true;
+		<script>
+		<body>
+
+
+-------------------------------------------------------------------------------------------------
+				
+							EVENTO FOCUS/BLUR
+
+
+El focus es llamado cuando un elemento esta siendo focuseando y blur es cuando el elemento
+pierde el foco, como cuando es mousedown-mouseup, por ejemplo cuando pones un mail incorrecto
+en un input y enseguida te lo marca en rojo diciendote que el mail no es valido.
+
+EJEMPLO:
+
+	<style>
+	  .invalid { border-color: red; }
+	  #error { color: red }
+	</style>
+
+	Your email please: <input type="email" id="input">
+
+	<div id="error"></div>
+
+	<script>
+	input.onblur = function() {
+	  if (!input.value.includes('@')) { // not email
+	    input.classList.add('invalid');
+	    error.innerHTML = 'Please enter a correct email.'
+	  }
+	};
+
+	input.onfocus = function() {
+	  if (this.classList.contains('invalid')) {
+	    // remove the "error" indication, because the user wants to re-enter something
+	    this.classList.remove('invalid');
+	    error.innerHTML = "";
+	  }
+	};
+	</script>////
+
+
+
+DATO IMPORTANTE:
+	
+	Focus/blur no hacen un bubble up, si nececitamos esa feature tendriamos que hacer
+	elemento.addEventListener("focusin",funcion);
+	elemento.addEventListener("focusout",funcion);
+
+------------------------------------------------------------------------------------------------
+		
+								EVENT CHANGE
+
+Por ejemplo en el caso de un input cuando lo clickeamos le estamos dando un foco, por ejemplo
+digamos que ponemos un valor dentro de ese input y clickeamos en otro lado, entonces ahi pierde
+el foco y hay un cambio en el contenido de ese input, ahi es cuando se activa el evento change.
+
+EJEMPLO:
+	<input type="text" onchange="alert(this.value)">
+	<input type="button" value="Button">
+
+
+
+EVENT INPUT:
+	Se activa cada vez que el valor de un input es modificado, el event on change se activa
+	cuando ya terminamos de escribir y cambiamos el foco, event input se activa a cada letra
+	que cambiamos en el momento que tenemos el foco en ese input.
+
+	EJEMPLO:
+		<input type="text" id="input"> oninput: <span id="result"><span>
+		<script>
+		  input.oninput = function() {
+		    result.innerHTML = input.value;
+		  };
+		<script>
+
+-----------------------------------------------------------------------------------------------
+
+								
+								EVENT SUBMIT
+
+
+Se activa cuando apretamos el boton submit en un formulario, la idea es que se ejecuta antes
+de que sea cargado a una base de datos o algo por el estilo para que sea validado y enviado por
+javascript o se aborte la operacion por alguna especie de fallo
+
+
+DOS FORMAS DE HACER UN SUBMIT:
+	The first – to click <input type="submit"> or <input type="image">.
+	The second – press Enter on an input field.
+
+	EJEMPLO PRACTICO:
+		<form onsubmit="alert('submit!');return false">
+		  First: Enter in the input field <input type="text" value="text"><br>
+		  Second: Click "submit": <input type="submit" value="Submit">
+		<form>
+
+
+Con form.submit() lo podemos mandar directamente nosotros al formulario pero esto
+es medio raro, asi que lo copio pero no parece muy correcto usarlo asi:
+	let form = document.createElement('form');
+	form.action = 'https://google.com/search';
+	form.method = 'GET';
+
+	form.innerHTML = '<input name="q" value="test">';
+
+	// the form must be in the document to submit it
+	document.body.append(form);
+
+	form.submit();

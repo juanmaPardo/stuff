@@ -1,0 +1,24 @@
+let elem = document.getElementById("coords-show-mark");
+
+function createMessageUnder(elem, html) {
+  // create message element
+  let message = document.createElement('div');
+  // better to use a css class for the style here
+  message.style.cssText = "position:fixed; color: red";
+
+  // assign coordinates, don't forget "px"!
+  let coords = elem.getBoundingClientRect();
+
+  message.style.left = coords.left + "px";
+  message.style.top = coords.bottom + "px";
+
+  message.innerHTML = html;
+
+  return message;
+}
+
+// Usage:
+// add it for 5 seconds in the document
+let message = createMessageUnder(elem, 'Hello, world!');
+document.body.append(message);
+setTimeout(() => message.remove(), 5000);
